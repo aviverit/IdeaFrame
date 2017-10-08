@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ASPNET_MVC_Application.Models.Topic>
+
+@{
+    ViewBag.Title = "All Topics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Following table shows the Topics detail</h3>
+<p>You will find their details, as well as other links to other actions that can be performed and operated over the topic objects. </p>
+
+<p>You can also create a new topic <a href="~/Topic/Create">here</a>. </p>
+
+<table class="topics-table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Trusted</th>
+        <th>Actions</th>
+    </tr>
+
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var topic in Model)
+        {
+            // Create the list of these clients
+            <tr>
+                <td>@topic.ID</td>
+                <td>@topic.Name</td>
+                <td>@topic.Address</td>
+                <td>@topic.Trusted</td>
+                <td>
+                    <a href="~/Topic/Update/@topic.ID">Update</a>
+                    <a href="~/Topic/Delete/@topic.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
